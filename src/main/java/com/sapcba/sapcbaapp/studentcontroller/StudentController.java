@@ -3,6 +3,7 @@ package com.sapcba.sapcbaapp.studentcontroller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,8 @@ import com.sapcba.sapcbaapp.studentdto.StudentDTO;
 import com.sapcba.sapcbaapp.studentservice.StudentService;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/ContactUs")
+@CrossOrigin(origins = "*") // Enable CORS if frontend runs separately
 public class StudentController {
 	@Autowired
 	private StudentService studentService;
@@ -27,13 +29,14 @@ public class StudentController {
 	}
 
 	@GetMapping
-	public List<Student> getAll() {
+	public List<Student> getAll(StudentDTO studentdto) {
 		return studentService.getAllStudent();
 
 	}
 
 	@PostMapping
-	public Student saveStudent(StudentDTO studentdto) {
+	public Student saveStudent(@RequestBody StudentDTO studentdto) {
+		System.out.println("hitted");
 		return studentService.saveStudent(studentdto);
 	}
 

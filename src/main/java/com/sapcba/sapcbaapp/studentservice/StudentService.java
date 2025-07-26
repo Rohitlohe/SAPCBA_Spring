@@ -17,7 +17,7 @@ public class StudentService {
 	private StudentRepo studentRepo;
 
 	public List<Student> getAllStudent() {
-//      return new ArrayList<>(productRepo.values());
+
 		return studentRepo.findAll();
 	}
 
